@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import
+            type="android.view.View"/>
+        <variable
+            name="branch"
+            type="group.wenjian.takeout.Branch"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.BranchAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:paddingBottom="0dp"
+        android:id="@+id/branchItem"
+        android:textColor="@color/Red"
+        android:onClick="@{ (view) -> methods.onItemClick(branch)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/graylocation"
+                android:paddingRight="8dp"
+
+                android:visibility="@{ !branch.selected ? View.VISIBLE : View.GONE }"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/redlocaiton"
+                android:paddingRight="8dp"
+                android:visibility="@{ branch.selected ? View.VISIBLE : View.GONE }"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{ branch.storeName}"
+                    android:textSize="@dimen/small"
+                    android:textColor="@{ branch.selected ? @color/Red : @color/Gray }"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{ branch.address }"
+                    android:textSize="@dimen/small"
+                    android:maxEms="18"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@{ branch.selected ? @color/Red : @color/Gray }"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12488.2"
+                android:layout_marginRight="3dp"
+                android:textColor="@{ branch.selected ? @color/Red : @color/Gray }"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公里"
+                android:textColor="@color/gainsboro"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:visibility="@{ branch.selected ? View.VISIBLE : View.GONE }">
+            <ImageView
+                android:layout_width="105dp"
+                android:layout_height="88dp"
+                android:background="@drawable/img_border"
+                android:scaleType="centerInside"
+                android:src="@mipmap/pic"
+                android:padding="5dp"
+                android:layout_marginRight="10dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="营业时间"
+                    android:gravity="center_vertical"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/clocker"
+                        android:layout_marginRight="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09:00-22:00"
+                        android:textSize="@dimen/small"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="进入菜单"
+                    android:id="@+id/go"
+                    android:gravity="center"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/large"
+                    android:background="@drawable/btn_coner"
+                    android:onClick="@{ ()-> methods.go() }"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gainsboro"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</layout>

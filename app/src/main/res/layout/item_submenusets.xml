@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+       <variable
+           name="submenuset"
+           type="group.wenjian.takeout.Menuset"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="@{ submenuset.name }"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/normal"
+                    android:textColor="@color/Black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@{ submenuset.info }"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/small"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/gainsboro"
+                android:layout_marginRight="10dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="2dp"
+                android:layout_weight="1"
+                android:minHeight="50dp"
+                android:layout_height="match_parent"
+                android:id="@+id/list"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/gainsboro"
+            android:visibility='@{ submenuset.text == "false" ? View.GONE : View.VISIBLE }'/>
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="type"
+            type="group.wenjian.takeout.Type"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.TypeAdapter.Methods"/>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/typeItem"
+        android:background='@{ type.choose ? @color/White : @color/WhiteGray  }'
+        android:onClick="@{ () -> methods.OnItemClick(type) }">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@{ type.name }"
+            android:layout_alignParentTop="true"
+            android:id="@+id/name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gainsboro"
+            android:layout_below="@+id/name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text='@{ type.qty + "" }'
+            android:textSize="10sp"
+            android:textColor="@color/White"
+            android:background="@drawable/half_coner"
+            android:visibility="@{ type.qty > 0 ? View.VISIBLE : View.GONE }"/>
+    </RelativeLayout>
+</layout>

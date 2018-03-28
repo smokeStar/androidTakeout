@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="list"
+            type="group.wenjian.takeout.Menuset"/>
+        <variable
+            name="method"
+            type="group.wenjian.takeout.ListAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{ list.qty != 1 ? View.VISIBLE : View.GONE }">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/normal"
+                            android:text='@{ list.name + "/" + list.unit }'/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/normal"
+                            android:text='@{ "( +"+list.price+"元 )" }'
+                            android:visibility="@{ list.price>0 ? View.VISIBLE : View.GONE }"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/reduce_btn"
+                        android:layout_marginRight="5dp"
+                        android:onClick="@{ ()-> method.add(list,-1) }"
+                        android:visibility="@{ list.num>0 ? View.VISIBLE : View.GONE }"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{ list.num+"" }'
+                        android:visibility="@{ list.num>0 ? View.VISIBLE : View.GONE }"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/add_btn"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="@{ ()-> method.add(list,1) }"/>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gainsboro"
+                android:layout_marginTop="5dp"
+                android:visibility='@{ list.text == "false" ? View.GONE : View.VISIBLE }'/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{ list.qty == 1 ? View.VISIBLE : View.GONE }">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                android:onClick="@{ ()-> method.chooseOne(list) }">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{ list.name + "/" + list.unit }'
+                    android:layout_weight="1"
+                    android:height="45dp"
+                    android:gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/unselect"
+                    android:visibility="@{ !list.selected ? View.VISIBLE : View.GONE }"/>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/selected"
+                    android:visibility="@{ list.selected ? View.VISIBLE : View.GONE }"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gainsboro"
+                android:layout_marginTop="5dp"
+                android:visibility='@{ list.text == "false" ? View.GONE : View.VISIBLE }'/>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

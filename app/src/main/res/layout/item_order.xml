@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="order"
+            type="group.wenjian.takeout.Menu"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.OrderAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderItem">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:background="@drawable/img_border2"
+                android:scaleType="centerInside"
+                android:src="@mipmap/nopic"
+                android:padding="5dp"
+                android:layout_marginRight="10dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{ order.name }"
+                    android:textSize="14sp"
+                    android:textColor="@color/Black"
+                    android:height="40dp"
+                    android:gravity="center_vertical"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{ order.price + "元/" + order.unit }'
+                        android:textColor="@color/Gray"
+                        android:layout_weight="1"
+                        android:textSize="10sp"
+                        android:height="30dp"
+                        android:gravity="center_vertical"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/reduce_btn"
+                        android:layout_marginRight="5dp"
+                        android:onClick="@{ ()-> methods.setOrder(order,-1) }"
+                        android:visibility="@{ order.qty>0 ? View.VISIBLE : View.GONE }"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{ order.qty+"" }'
+                        android:visibility="@{ order.qty>0 ? View.VISIBLE : View.GONE }"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/add_btn"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="@{ ()-> methods.setOrder(order,1) }"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="已售罄"
+                    android:textSize="10sp"
+                    android:height="30dp"
+                    android:gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="25dp"
+            android:orientation="horizontal"
+            android:background="@drawable/dash_border"
+            android:paddingLeft="8dp"
+
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:visibility='@{ order.content != "" ? View.VISIBLE : View.GONE }'>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text='@{"[ 套餐内容 ]:"+order.content  }'
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/Gray"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gainsboro"/>
+    </LinearLayout>
+</layout>

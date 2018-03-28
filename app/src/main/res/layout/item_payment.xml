@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="payment"
+            type="group.wenjian.takeout.Payment"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.paymentAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
+            android:onClick="@{ ()-> methods.choose(payment) }"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp">
+
+            <!--动态绑定imageview资源用imageResource-->
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:imageResource="@{ payment.img_url }"
+                android:scaleType="fitXY"
+                android:layout_marginRight="10dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="16sp"
+                    android:text="@{ payment.name }"
+                    android:textColor="@color/Black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="@{ payment.info }"
+                    android:textSize="@dimen/small"
+                    android:textColor="@color/Gray"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/selected"
+                android:visibility="@{ payment.selected ? View.VISIBLE : View.GONE }"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/unselect"
+                android:visibility="@{ !payment.selected ? View.VISIBLE : View.GONE }"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gainsboro"/>
+    </LinearLayout>
+</layout>

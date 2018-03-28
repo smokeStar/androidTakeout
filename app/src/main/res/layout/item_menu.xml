@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="menu"
+            type="group.wenjian.takeout.Menu"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.MenuAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuItem">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:background="@drawable/img_border2"
+                android:scaleType="centerInside"
+                android:src="@mipmap/nopic"
+                android:padding="5dp"
+                android:layout_marginRight="10dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{ menu.name }"
+                    android:textSize="14sp"
+                    android:textColor="@color/Black"
+                    android:height="40dp"
+                    android:gravity="center_vertical"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{ menu.price + "元/每" + menu.unit }'
+                        android:textColor="@color/Gray"
+                        android:layout_weight="1"
+                        android:textSize="10sp"
+                        android:height="30dp"
+                        android:gravity="center_vertical"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/reduce_btn"
+                        android:layout_marginRight="5dp"
+                        android:id="@+id/reduce"
+                        android:onClick="@{()-> methods.setMenu(menu,-1)}"
+                        android:visibility="@{ menu.qty>0 ? View.VISIBLE : View.GONE }"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{ menu.qty+"" }'
+                        android:visibility="@{ menu.qty>0 ? View.VISIBLE : View.GONE }"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/add_btn"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/add"
+                        android:onClick="@{ ()-> methods.setMenu(menu,1)}"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="已售罄"
+                    android:textSize="10sp"
+                    android:height="30dp"
+                    android:gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gainsboro"/>
+    </LinearLayout>
+</layout>

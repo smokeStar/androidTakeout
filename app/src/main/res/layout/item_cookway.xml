@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="cookway"
+            type="group.wenjian.takeout.Cookway"/>
+        <variable
+            name="methods"
+            type="group.wenjian.takeout.CookwayAdapter.Methods"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@{cookway.selected ? @drawable/blue_bg : @drawable/img_border2 }"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="@{()-> methods.add(cookway)}">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:text='@{ cookway.name }'
+            android:textColor="@{cookway.selected ? @color/White : @color/Black}"
+            android:maxEms="12"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:text='@{ "("+cookway.price + "元)" }'
+            android:visibility="@{ cookway.price >0 ? View.VISIBLE : View.GONE }"
+            android:textColor="@{cookway.selected ? @color/White : @color/Black}"/>
+    </LinearLayout>
+</layout>

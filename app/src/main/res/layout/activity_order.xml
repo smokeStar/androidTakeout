@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="g"
+            type="group.wenjian.takeout.dd"/>
+        <variable
+            name="orderActivity"
+            type="group.wenjian.takeout.OrderActivity"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/orderBar"
+            layout="@layout/tool_bar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingRight="5dp"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical"
+            android:background="@color/WhiteGreen">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="金字招牌 [总店]"
+                android:textColor="@color/White"
+                android:textSize="15sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="继续点餐"
+                android:textColor="@color/White"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@drawable/btn_blue"
+                android:onClick="@{ ()-> g.finish(orderActivity)}"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/orderList"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:paddingRight="5dp"
+            android:paddingLeft="20dp"
+            android:gravity="center_vertical"
+            android:background="#bbb"
+            android:visibility="@{g.totalQty>0? View.VISIBLE : View.GONE }">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{ g.totalQty+ "份 | " + g.totalFee + "元" }'
+                android:textColor="@color/White"
+                android:textSize="15sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="我要下单"
+                android:textColor="@color/White"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@drawable/btn_blue"
+                android:onClick="ordered"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>
